@@ -1,0 +1,115 @@
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+#link-canal {
+    color: #4A35FD;
+    font-size: 10px;
+}
+
+
+/*****************************
+busqueda
+********************/
+
+.search-head {
+    text-align: center;
+    font-weight: 700px;
+    padding: 0px;
+}
+
+.search-head .search-input {
+    padding: 0px 0px 0px 0px;
+}
+
+.search-head .s-inp {
+    width: 80%;
+    height: 25px;
+    border-radius: 2px;
+    border: none;
+    font-size: 20px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.377);
+}
+
+.search-head .btn-sub {
+    height: 35px;
+    border-radius: 2px;
+    border: none;
+}
+
+
+/*****************************
+cuerpo
+**********************************/
+
+.search-container {
+    text-align: center;
+    padding: px 0px;
+    font-weight: 700px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.video-info {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+}
+
+.info {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.info h3,
+p {
+    text-align: left;
+    font-size: 80%;
+    margin: 0;
+    right: 0;
+}
+
+.titulo {
+    min-width: 0;
+    margin-right: 8px;
+    overflow: hidden;
+}
+
+.chaInfo {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1em;
+    height: 300pxs
+}
+
+.Video-list {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    grid-gap: 0.5em;
+    border: 1px;
+    height: 1000px;
+    width: 600px;
+}
+
+.Video-card {
+    border-radius: 10px;
+    background-color: #3E989B;
+    background-color: var(--color);
+    display: grid;
+}
+
+.Video-card p {
+    justify-self: center;
+    align-self: center;
+    color: white;
+}
+
+.icon {
+    padding: 10px;
+    font-size: 18.5px;
+    color: aliceblue;
+}

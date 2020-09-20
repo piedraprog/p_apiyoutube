@@ -3,6 +3,8 @@
 const _key = "Aqui va la api key";
 const _Cid = ""; // aqui va el id del canal  prueba
 
+
+// esto es para cuando se recargue la pagina me muestre la pantalla de bienvenida
 $(document).ready(function() {
 
     $(location).attr('href', '#home');
@@ -16,6 +18,7 @@ $(document).ready(function() {
 //FUNCION PARA REALIZAR LA BUSQUEDA CON LA API Y UN METODO AJAX (GET)
 function search() {
 
+    // Obtengo el valor en el inpute
     const dato = $('#searchtext').val();
 
     data = {
@@ -29,22 +32,21 @@ function search() {
 
     }
 
-    console.log(data);
+    // console.log(data);
 
+    //  Url a donde envio los datos
     url = "https://www.googleapis.com/youtube/v3/search";
 
+    //metodo ajax get para la obtencion de parametros
     $.get(url, data, (request) => {
 
-        console.log(request);
+        // console.log(request);
         template = '';
 
-
-
-
+        // Este for es para listar la informacion que me devuelve la api
         for (let k in request.items) {
 
             //console.log(k, request.items[k].snippet.thumbnails.default.url);
-
             // console.log(request2.items[k].snippet.channelId)
 
             template += `                   
@@ -73,7 +75,7 @@ function search() {
 
 }
 
-
+// FUNCION QUE ME MUESTRA LA INFORMACION DEL CANAL SEGUN EL ID
 function channelInfo(id) {
 
     $(location).attr('href', '#channelInfo');
@@ -81,6 +83,7 @@ function channelInfo(id) {
     //console.log("este es el id del canal " + id);
 
     template = '';
+    //Url a donde le pido la informacion del canal
     url = "https://www.googleapis.com/youtube/v3/channels";
 
     data = {
@@ -89,6 +92,7 @@ function channelInfo(id) {
         pageToken: '  ',
         key: _key
     }
+
 
     $.get(url, data, (request) => {
 
@@ -133,7 +137,7 @@ function channelInfo(id) {
 }
 
 
-
+// FUNCION PARA OBTENER LOS ULTIMOS VIDEOS SUBIDOS POR EL CANAL
 function lastVideos(id) {
 
     data = {
@@ -143,6 +147,7 @@ function lastVideos(id) {
         key: _key
     }
 
+    //Url donde hago la solicitud de los videos en base al id del canal 
     url = "https://www.googleapis.com/youtube/v3/playlists"
     template = "";
     $.get(url, data, (request) => {
@@ -174,11 +179,9 @@ function lastVideos(id) {
 }
 
 
-
+//FUNCION PARA QUE CUANDO CARGUE LA PAGINA PRINCIPAL ME MUESTRE LOS VIDEOS MAS POPULARES
 $('#Most-popular').ready(function() {
-
-
-
+    //esto es la estructuracion de la data que se pasa a travez de la url para que la api me de una respuesta 
     data = {
         part: 'id,snippet',
         chart: 'mostPopular',
@@ -186,6 +189,7 @@ $('#Most-popular').ready(function() {
         key: _key
     }
 
+    //Url donde se consulta los videos
     url = "https://www.googleapis.com/youtube/v3/videos"
     template = '';
     $.get(url, data, (request) => {
@@ -207,8 +211,10 @@ $('#Most-popular').ready(function() {
     })
 });
 
-
+//FUNCION QUE EN BASE AL ID DEL VIDEO ME PERMITE REPRODUCIRLO
 function showVideo(id) {
+
+
     $(location).attr('href', '#showVideo');
     // console.log("id video: ");
     // console.log(id);

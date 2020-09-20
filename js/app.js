@@ -1,6 +1,7 @@
 // KEY PARA ENTRAR EN LA API DE YOUTUBE
-const _key = "AIzaSyCi_LLmtmlK-l5J5-huREE-chjZAxaTzu8";
-const _Cid = "UCJsfRTW3Xi0H_8lcGRAKjyA";
+// 
+const _key = "";
+const _Cid = ""; // aqui va el id del canal 
 
 $(document).ready(function() {
 
@@ -14,7 +15,6 @@ $(document).ready(function() {
 function search() {
 
     const dato = $('#searchtext').val();
-
 
     data = {
 

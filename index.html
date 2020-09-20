@@ -52,12 +52,13 @@
 
 
                 </div>
+
             </div>
         </div>
 
 
 
-        <div data-role="footer" style="text-align:center;">
+        <div data-role="footer" data-position="fixed" style="text-align:center;">
             2020 &copy; Jose Piedra
             <a style="  font-size: 18.5px;" href="https://github.com/piedraprog/pp7_api_youtube">
                 <i class="fab fa-github"></i> github
@@ -142,10 +143,48 @@
             <!-- INFORMACION QUE MUESTRAS LOS DATOS DE UN CANAL DE YOTUBE -->
             <div id="chann">
 
-                <div id="lastVideos">
-                    <!-- AQUI SE MUESTRAN LOS ULTIMOS VIDEOS SUBIDOS -->
-                </div>
+
             </div>
+
+        </div>
+
+        <!-- FOOTER  -->
+        <div data-role="footer" data-position="fixed" style="text-align:center;">
+            2020 &copy; Jose Piedra
+            <a style="  font-size: 18.5px;" href="https://github.com/piedraprog/pp7_api_youtube">
+                <i class="fab fa-github"></i> github
+            </a>
+
+        </div>
+    </div>
+
+    <!-- SECCION PARA VER LOS VIDEOS -->
+    <div data-role="page" data-theme="b" id="showVideo">
+        <div data-role="header" data-position="inline">
+            <h1>Proyecto Youtube API</h1>
+            <!-- SECCION PARA NAVEGAR ENTRE PAGINAS -->
+            <div data-role="navbar">
+                <ul>
+                    <li>
+                        <a href="#home" data-transition="fade">Home 
+                            <i class="fa fa-home" aria-hidden="true"></i> 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#search" data-transition="fade">Buscar 
+                            <i class="fa fa-search"aria-hidden="true"></i> 
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div data-role="content" data-theme="b">
+            <!-- INFORMACION QUE MUESTRAS EL VIDEO SELECCIONADO -->
+            <div id="video-play">
+
+
+            </div>
+
         </div>
 
         <!-- FOOTER  -->

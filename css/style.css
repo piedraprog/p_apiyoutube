@@ -83,16 +83,16 @@ p {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 1em;
-    height: 300pxs
+    height: 300px;
 }
 
 .Video-list {
     display: grid;
-    grid-template-columns: 2fr 2fr;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 0.5em;
     border: 1px;
-    height: 1000px;
-    width: 600px;
+    height: auto;
+    width: auto;
 }
 
 .Video-card {
@@ -100,6 +100,7 @@ p {
     background-color: #3E989B;
     background-color: var(--color);
     display: grid;
+    width: 320px;
 }
 
 .Video-card p {
@@ -108,8 +109,44 @@ p {
     color: white;
 }
 
-.icon {
-    padding: 10px;
-    font-size: 18.5px;
-    color: aliceblue;
+.video-rep {
+    height: 500px;
+    width: 100%;
+}
+
+@media (min-width:1000px) {
+    .Video-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 0.5em;
+        height: auto;
+        width: auto;
+    }
+    .video-rep {
+        height: 500px;
+        width: 120%;
+    }
+}
+
+@media (max-width:600px) {
+    .Video-card {
+        border-radius: 10px;
+        background-color: #3E989B;
+        background-color: var(--color);
+        display: grid;
+        padding-bottom: 10px;
+    }
+    .Video-list {
+        display: grid;
+        grid-template-columns: 2fr;
+        grid-gap: 0.5em;
+        border: 1px;
+        height: auto;
+        width: auto;
+        padding-left: 100px;
+    }
+    .video-rep {
+        height: 370px;
+        width: 100%;
+    }
 }

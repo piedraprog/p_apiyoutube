@@ -1,17 +1,19 @@
 // KEY PARA ENTRAR EN LA API DE YOUTUBE
 // 
-const _key = "AIzaSyCi_LLmtmlK-l5J5-huREE-chjZAxaTzu8";
-const _Cid = ""; // aqui va el id del canal 
+const _key = "Aqui va la api key";
+const _Cid = ""; // aqui va el id del canal  prueba
 
 $(document).ready(function() {
 
+    $(location).attr('href', '#home');
 
-    //lastVideos()
+
 
 });
 
 
-// FUNCION PARA REALIZAR LA BUSQUEDA CON LA API Y UN METODO AJAX (GET)
+
+//FUNCION PARA REALIZAR LA BUSQUEDA CON LA API Y UN METODO AJAX (GET)
 function search() {
 
     const dato = $('#searchtext').val();
@@ -31,33 +33,33 @@ function search() {
 
     url = "https://www.googleapis.com/youtube/v3/search";
 
-    $.get(url, data, (request2) => {
+    $.get(url, data, (request) => {
 
-        console.log(request2);
+        console.log(request);
         template = '';
 
 
 
 
-        for (let k in request2.items) {
+        for (let k in request.items) {
 
             //console.log(k, request.items[k].snippet.thumbnails.default.url);
 
-            console.log(request2.items[k].snippet.channelId)
+            // console.log(request2.items[k].snippet.channelId)
 
             template += `                   
                 <div id="video-info" class="video-info" >
                     <div class="img">
-                    <img  onclick="mostrarVideo()" src="${request2.items[k].snippet.thumbnails.default.url}">
+                    <img  onclick="showVideo('${request.items[k].id.videoId}')" src="${request.items[k].snippet.thumbnails.default.url}">
                     </div>
                     <div class="info">
                         <div class="titulo">
-                            <label onclick="mostrarVideo()"><h3>${request2.items[k].snippet.title}</h3></label>
-                            
-                            <label><a onclick="channelInfo('${request2.items[k].snippet.channelId}')">${request2.items[k].snippet.channelTitle}</a> </label>
+                            <label onclick="showVideo('${request.items[k].id.videoId}')"><h3>${request.items[k].snippet.title}</h3></label>
+
+                            <label><a onclick="channelInfo('${request.items[k].snippet.channelId}')">${request.items[k].snippet.channelTitle}</a> </label>
                         </div>
-                        <div class="desc" onclick="mostrarVideo(${k})">
-                            <p>aqui van el numero de vistas</p>
+                        <div class="desc" onclick="showVideo(${k})">
+                            <p>${request.items[k].snippet.description}</p>
                         </div>
                     </div>
                 </div>      
@@ -72,19 +74,11 @@ function search() {
 }
 
 
-
-
-function mostrarVideo() {
-
-    console.log("aqui va el video ");
-
-}
-
 function channelInfo(id) {
 
     $(location).attr('href', '#channelInfo');
 
-    console.log("este es el id del canal " + id);
+    //console.log("este es el id del canal " + id);
 
     template = '';
     url = "https://www.googleapis.com/youtube/v3/channels";
@@ -123,7 +117,7 @@ function channelInfo(id) {
                                 total de videos Subidos: ${request.items[0].statistics.videoCount}
                             </div>
                             <div class="ui-field-contain">
-                                Total de vistas:${request.items[0].statistics.viewCount}
+                                Total de vistas: ${request.items[0].statistics.viewCount}
                             </div>
 
                         </div>
@@ -131,20 +125,20 @@ function channelInfo(id) {
                     </div>`
 
         $('#chann').html(template);
-        lastVideos(id);
+
     })
 
-
+    lastVideos(id);
 
 }
 
 
 
-function lastVideos() {
+function lastVideos(id) {
 
     data = {
-        part: 'id,snippet',
-        channelId: _Cid,
+        part: 'id,snippet,player',
+        channelId: id,
         maxResults: '5',
         key: _key
     }
@@ -153,52 +147,103 @@ function lastVideos() {
     template = "";
     $.get(url, data, (request) => {
 
-        console.log(request);
+        //console.log(request);
+        template += '<h3 style="text-align:center">Ultimos videos Subidos</h3>'
 
         for (let k in request.items) {
-            template += `<div class="video-img" style="">
-                            <label><img src="${request.items[k].snippet.thumbnails.default.url}" alt="miniatura"></label>
-                            <input type="hidden" id="idChnl" value="${request.items[k].snippet.channelId}">
-                            <label>${request.items[k].snippet.localized.title}</label>
-                        </div>`
+            template += `
+                        <div id="video-info" class="video-info" >
+                            <div class="img">
+                                <img  src="${request.items[k].snippet.thumbnails.default.url}">
+                            </div>
+                            <div class="info">
+                                <div class="titulo">
+                                    <label><h3>${request.items[k].snippet.title}</h3></label>
+                                </div>
+                                <div class="desc" >
+                                    <p>Descripción: ${request.items[k].snippet.description}</p>
+                                </div>
+                            </div>
+                        </div>
+                       `
         }
 
-        $("#lastVideos").html(template);
+
+        $("#chann").html(template);
     })
 }
 
 
 
+$('#Most-popular').ready(function() {
 
 
 
-// $('#Most-popular').ready(function() {
+    data = {
+        part: 'id,snippet',
+        chart: 'mostPopular',
+        maxResults: '20',
+        key: _key
+    }
+
+    url = "https://www.googleapis.com/youtube/v3/videos"
+    template = '';
+    $.get(url, data, (request) => {
+
+        //console.log(request);
+
+        for (let k in request.items) {
+            template += `<div class="Video-card" >
+                            <label>
+                                <img onclick="showVideo('${request.items[k].id}')" src="${request.items[k].snippet.thumbnails.medium.url}" alt="miniatura">
+                            </label>
+                            <label onclick="showVideo('${request.items[k].id}')">${request.items[k].snippet.localized.title}</label>
+                            <a onclick="channelInfo('${request.items[k].snippet.channelId}')">${request.items[k].snippet.channelTitle}</a>
+                        </div>
+                        `
+        }
+
+        $("#Most-popular").html(template);
+    })
+});
 
 
-//     console.log("div listo");
-//     data = {
-//         part: 'id,snippet',
-//         chart: 'mostPopular',
-//         maxResults: '20',
-//         key: _key
-//     }
+function showVideo(id) {
+    $(location).attr('href', '#showVideo');
+    // console.log("id video: ");
+    // console.log(id);
 
-//     url = "https://www.googleapis.com/youtube/v3/videos"
-//     template = '';
-//     $.get(url, data, (request) => {
+    url = "https://www.googleapis.com/youtube/v3/videos";
 
-//         console.log(request);
+    template = '';
 
-//         for (let k in request.items) {
-//             template += `<div class="Video-card">
-//                             <label><img src="${request.items[k].snippet.thumbnails.default.url}" alt="miniatura"></label>
-//                             <input type="hidden" id="idChnl" value="${request.items[k].snippet.channelId}">
-//                             <label>${request.items[k].snippet.localized.title}</label>
-//                             <a id="#">${request.items[k].snippet.channelTitle}</a>
-//                         </div>
-//                         `
-//         }
+    data = {
+        part: 'snippet, player,statistics',
+        id: id,
+        key: _key
+    }
 
-//         $("#Most-popular").html(template);
-//     })
-// });
+    $.get(url, data, (request) => {
+
+        // console.log("este console log es de show video:");
+        // console.log(request);
+
+        template += `
+                <label>
+                    <iframe id="video-rep" class="video-rep" src="https://www.youtube.com/embed/${request.items[0].id}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <h2>${request.items[0].snippet.title}</h2>
+                    <p>
+                        <a onclick="channelInfo('${request.items[0].snippet.channelId}')">${request.items[0].snippet.channelTitle}</a> 
+                        ${request.items[0].statistics.viewCount} <i class="fa fa-eye" aria-hidden="true"></i> 
+                        ${request.items[0].statistics.likeCount} <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                        ${request.items[0].statistics.dislikeCount} <i class="fas fa-thumbs-down    "></i>
+                    </p> 
+                </label>`
+
+
+        $('#video-play').html(template)
+    })
+
+
+
+}

@@ -1,0 +1,51 @@
+{
+    "name": "#JosepiedraApp",
+    "short_name": "#JPApp",
+    "description": "Proyecto utilizando la api de youtube v3, jose piedra",
+    "background_color": "#FFFFFF",
+    "theme_color": "#4A35FD",
+    "orientation": "portrait",
+    "display": "standalone",
+    "start_url": "./?utm_source=web_app_manifest",
+    "scope": "./",
+    "lang": "es-MX",
+    "icons": [{
+            "src": "../img/jp_1024.png",
+            "sizes": "1024x1024",
+            "type": "image/png"
+        }, {
+            "src": "../img/jp_512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }, {
+            "src": "../img/jp_256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+
+        }, {
+            "src": "../img/jp_144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+
+        }, {
+            "src": "../img/jp_128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+
+        }, {
+            "src": "../img/jp_64.png",
+            "sizes": "64x64",
+            "type": "image/png"
+        }, {
+            "src": "../img/jp_32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        }, {
+            "src": "../img/jp_favicon.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        }
+
+
+    ]
+}

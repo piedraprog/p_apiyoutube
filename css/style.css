@@ -40,6 +40,7 @@ busqueda
 }
 
 
+
 /*****************************
 cuerpo
 **********************************/
@@ -97,8 +98,6 @@ p {
 
 .Video-card {
     border-radius: 10px;
-    background-color: #3E989B;
-    background-color: var(--color);
     display: grid;
     width: 320px;
 }
@@ -121,18 +120,17 @@ p {
         grid-gap: 0.5em;
         height: auto;
         width: auto;
+
     }
     .video-rep {
         height: 500px;
-        width: 120%;
+        width: 100%;
     }
 }
 
 @media (max-width:600px) {
     .Video-card {
         border-radius: 10px;
-        background-color: #3E989B;
-        background-color: var(--color);
         display: grid;
         padding-bottom: 10px;
     }

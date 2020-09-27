@@ -1,16 +1,10 @@
-// KEY PARA ENTRAR EN LA API DE YOUTUBE
-// 
-
-const _key = "aqui va la api key";
-const _Cid = ""; // aquí va el id del canal  prueba
-
+const _key = ""; //KEY PARA QUE FUNCIONE LAS PETICIONES A LA API
+const _Cid = "UCjIA3wwhi0QjSOXAZwOXbPA"; // aquí va el id del canal  PRUEBA
 
 // esto es para cuando se recargue la pagina me muestre la pantalla de bienvenida
 $(document).ready(function() {
 
     $(location).attr('href', '#home');
-
-
 
 });
 
@@ -19,7 +13,7 @@ $(document).ready(function() {
 //FUNCION PARA REALIZAR LA BÚSQUEDA CON LA API Y UN MÉTODO AJAX (GET)
 function search() {
 
-    // Obtengo el valor en el inpute
+    // Obtengo el valor en el input
     const dato = $('#searchtext').val();
 
     data = {
@@ -93,7 +87,7 @@ function channelInfo(id) {
         pageToken: '  ',
         key: _key
     }
-
+    
 
     $.get(url, data, (request) => {
 
@@ -142,25 +136,28 @@ function channelInfo(id) {
 function lastVideos(id) {
 
     data = {
-        part: 'id,snippet,player',
-        channelId: id,
-        maxResults: '5',
-        key: _key
-    }
 
+        part: 'snippet',
+        channelId: id,
+        maxResults: '10',
+        order: 'date',
+        type: 'video',
+        key: _key
+
+    }
     //Url donde hago la solicitud de los videos en base al id del canal 
-    url = "https://www.googleapis.com/youtube/v3/playlists"
+    url = "https://www.googleapis.com/youtube/v3/search"
     template = "";
     $.get(url, data, (request) => {
 
-        //console.log(request);
+        console.log(request);
         template += '<h3 style="text-align:center">Últimos videos Subidos</h3>'
 
         for (let k in request.items) {
             template += `
-                        <div id="video-info" class="video-info" >
-                            <div class="img">
-                                <img  src="${request.items[k].snippet.thumbnails.default.url}">
+                        <div id="video-info" class="video-info" onclick="showVideo('${request.items[k].id.videoId}')">
+                            <div  class="img">
+                                <img src="${request.items[k].snippet.thumbnails.default.url}">
                             </div>
                             <div class="info">
                                 <div class="titulo">
@@ -186,7 +183,7 @@ $('#Most-popular').ready(function() {
     data = {
         part: 'id,snippet',
         chart: 'mostPopular',
-        maxResults: '20',
+        maxResults: '22',
         key: _key
     }
 
@@ -212,9 +209,8 @@ $('#Most-popular').ready(function() {
     })
 });
 
-//FUNCIÓN QUE EN BASE AL ID DEL VIDEO ME PERMITE REPRODUCIRLO
+// //FUNCIÓN QUE EN BASE AL ID DEL VIDEO ME PERMITE REPRODUCIRLO
 function showVideo(id) {
-
 
     $(location).attr('href', '#showVideo');
     // console.log("id video: ");

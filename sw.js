@@ -3,17 +3,17 @@
 const CACHE_NAME = 'v1_APP_JP_APIYV3',
     urlsToCache = [
         './',
-        '../css/themes/p_yutube_api.min.css',
-        '../css/themes/jquery.mobile.icons.min.css',
+        'css/themes/p_yutube_api.min.css',
+        'css/themes/jquery.mobile.icons.min.css',
         'https://use.fontawesome.com/releases/v5.0.7/css/all.css',
-        '../jquery-m-1.4.5/jquery.mobile.structure-1.4.5.min.css',
-        '../jquery-m-1.4.5/jQuery_v1.11.1.js',
-        '../jquery-m-1.4.5/jquery.mobile-1.4.5.min.js',
-        '../img/jp_favicon.png',
-        '../img/jp_1024.png',
+        'jquery-m-1.4.5/jquery.mobile.structure-1.4.5.min.css',
+        'jquery-m-1.4.5/jQuery_v1.11.1.js',
+        'jquery-m-1.4.5/jquery.mobile-1.4.5.min.js',
+        'img/jp_favicon.png',
+        'img/jp_1024.png',
         'https://fonts.googleapis.com/css?family=Roboto:300,400',
-        '../css/fontawesome/js/all.min.js',
-        'app.js'
+        'css/fontawesome/js/all.min.js',
+        'js/app.js'
     ]
 
 //durante la fase de instalación, generalmente se almacena en caché los activos estáticos

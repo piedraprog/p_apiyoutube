@@ -1,7 +1,8 @@
 // KEY PARA ENTRAR EN LA API DE YOUTUBE
 // 
-const _key = "Aqui va la api key";
-const _Cid = ""; // aqui va el id del canal  prueba
+
+const _key = "aqui va la api key";
+const _Cid = ""; // aquí va el id del canal  prueba
 
 
 // esto es para cuando se recargue la pagina me muestre la pantalla de bienvenida
@@ -15,7 +16,7 @@ $(document).ready(function() {
 
 
 
-//FUNCION PARA REALIZAR LA BUSQUEDA CON LA API Y UN METODO AJAX (GET)
+//FUNCION PARA REALIZAR LA BÚSQUEDA CON LA API Y UN MÉTODO AJAX (GET)
 function search() {
 
     // Obtengo el valor en el inpute
@@ -37,13 +38,13 @@ function search() {
     //  Url a donde envio los datos
     url = "https://www.googleapis.com/youtube/v3/search";
 
-    //metodo ajax get para la obtencion de parametros
+    //método ajax get para la obtención de parámetros
     $.get(url, data, (request) => {
 
         // console.log(request);
         template = '';
 
-        // Este for es para listar la informacion que me devuelve la api
+        // Este for es para listar la información que me devuelve la api
         for (let k in request.items) {
 
             //console.log(k, request.items[k].snippet.thumbnails.default.url);
@@ -75,7 +76,7 @@ function search() {
 
 }
 
-// FUNCION QUE ME MUESTRA LA INFORMACION DEL CANAL SEGUN EL ID
+// FUNCIÓN QUE ME MUESTRA LA INFORMACIÓN DEL CANAL SEGÚN EL ID
 function channelInfo(id) {
 
     $(location).attr('href', '#channelInfo');
@@ -83,7 +84,7 @@ function channelInfo(id) {
     //console.log("este es el id del canal " + id);
 
     template = '';
-    //Url a donde le pido la informacion del canal
+    //Url a donde le pido la información del canal
     url = "https://www.googleapis.com/youtube/v3/channels";
 
     data = {
@@ -109,13 +110,13 @@ function channelInfo(id) {
                                 nombre del canal: ${request.items[0].snippet.title}
                             </div>
                             <div class="ui-field-contain">
-                                descripcion del canal: ${request.items[0].snippet.description}
+                                descripción del canal: ${request.items[0].snippet.description}
                             </div>
                         </div>
 
                         <div class="ui-bar ui-bar-a">
                             <div class="ui-field-contain">
-                                Numero de Suscriptores: ${request.items[0].statistics.subscriberCount}
+                                Número de Suscriptores: ${request.items[0].statistics.subscriberCount}
                             </div>
                             <div class="ui-field-contain">
                                 total de videos Subidos: ${request.items[0].statistics.videoCount}
@@ -137,7 +138,7 @@ function channelInfo(id) {
 }
 
 
-// FUNCION PARA OBTENER LOS ULTIMOS VIDEOS SUBIDOS POR EL CANAL
+// FUNCTION PARA OBTENER LOS ÚLTIMOS VIDEOS SUBIDOS POR EL CANAL
 function lastVideos(id) {
 
     data = {
@@ -153,7 +154,7 @@ function lastVideos(id) {
     $.get(url, data, (request) => {
 
         //console.log(request);
-        template += '<h3 style="text-align:center">Ultimos videos Subidos</h3>'
+        template += '<h3 style="text-align:center">Últimos videos Subidos</h3>'
 
         for (let k in request.items) {
             template += `
@@ -179,9 +180,9 @@ function lastVideos(id) {
 }
 
 
-//FUNCION PARA QUE CUANDO CARGUE LA PAGINA PRINCIPAL ME MUESTRE LOS VIDEOS MAS POPULARES
+//FUNCIÓN PARA QUE CUANDO CARGUE LA PAGINA PRINCIPAL ME MUESTRE LOS VIDEOS MAS POPULARES
 $('#Most-popular').ready(function() {
-    //esto es la estructuracion de la data que se pasa a travez de la url para que la api me de una respuesta 
+    //esto es la estructuración de la data que se pasa a traves de la url para que la api me de una respuesta 
     data = {
         part: 'id,snippet',
         chart: 'mostPopular',
@@ -211,7 +212,7 @@ $('#Most-popular').ready(function() {
     })
 });
 
-//FUNCION QUE EN BASE AL ID DEL VIDEO ME PERMITE REPRODUCIRLO
+//FUNCIÓN QUE EN BASE AL ID DEL VIDEO ME PERMITE REPRODUCIRLO
 function showVideo(id) {
 
 
@@ -255,9 +256,9 @@ function showVideo(id) {
 }
 
 
-// INSTALACION DEL SERVICE WORKER
+// INSTALACIÓN DEL SERVICE WORKER
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('js/sw.js')
+    navigator.serviceWorker.register('sw.js')
         .then(reg => console.log('Registro de SW exitoso', reg))
         .catch(err => console.warn('Error al tratar de registrar el sw', err))
 }
